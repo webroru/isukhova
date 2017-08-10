@@ -1,0 +1,76 @@
+#toTop {
+    background: white;
+    border: 1px solid #e3e3e3;
+    border-radius: 0;
+    color: #828282;
+    display: none;
+    height: 40px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    text-indent: 0;
+    width: 40px;
+    z-index: 999;
+}
+
+@media (min-width: 768px) {
+    #toTop {
+        position: fixed;
+        margin: 0;
+        bottom: 60px;
+    }
+}
+
+@media (min-width: 768px) {
+    #toTop {
+
+    }
+}
+
+@media (max-width: 767px) {
+    #toTop {
+        display: block !important;
+        width: 100%;
+        border-bottom: none;
+        border-left: none;
+        border-right: none;
+    }
+}
+
+#toTop:before {
+    content: "\e316";
+    display: inline-block;
+    direction: ltr;
+    font-family: 'Material Icons';
+    font-feature-settings: 'liga';
+    font-style: normal;
+    font-size: 25px;
+    font-weight: normal;
+    height: 38px;
+    line-height: 38px;
+    letter-spacing: normal;
+    text-rendering: optimizeLegibility;
+    text-align: center;
+    text-transform: none;
+    white-space: nowrap;
+    width: 38px;
+    word-wrap: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-width: 544px) {
+    #toTop {
+        left: auto;
+        right: 30px;
+    }
+}
+
+#toTop:active, #toTop:focus {
+    outline: none;
+}
+
+#toTop:hover {
+    color: #fff;
+    background: #c8c8c8;
+}

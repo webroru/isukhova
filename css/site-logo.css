@@ -1,0 +1,37 @@
+.site-logo {
+    margin: 0;
+}
+
+.site-logo__link {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 100%;
+    padding: 20px 0;
+}
+
+@media (min-width: 1200px) {
+    .site-logo__link {
+        padding: 20px 0 13px;
+    }
+}
+
+.site-logo__link:focus {
+    outline: none;
+}
+
+.site-logo__link img {
+    vertical-align: middle;
+}
+
+.site-logo.image {
+    letter-spacing: 1px;
+    font-size: 1em;
+    line-height: 1;
+    margin: 0 0 4px;
+}
+
+/* ##Logo */
+.site-logo__link, .site-logo__link:hover {
+    color: #212226;
+}
+
