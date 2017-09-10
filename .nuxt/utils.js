@@ -1,5 +1,5 @@
 'use strict'
-import Vue from 'vue'
+import { app } from './index'
 
 const noopData = () => ({})
 
@@ -12,21 +12,6 @@ export function applyAsyncData (Component, asyncData = {}) {
   if (Component._Ctor && Component._Ctor.options) {
     Component._Ctor.options.data = Component.options.data
   }
-}
-
-export function sanitizeComponent (Component) {
-  if (!Component.options) {
-    Component = Vue.extend(Component) // fix issue #6
-    Component._Ctor = Component
-  } else {
-    Component._Ctor = Component
-    Component.extendOptions = Component.options
-  }
-  // For debugging purpose
-  if (!Component.options.name && Component.options.__file) {
-    Component.options.name = Component.options.__file
-  }
-  return Component
 }
 
 export function getMatchedComponents (route) {
@@ -53,26 +38,23 @@ export function flatMapComponents (route, fn) {
   }))
 }
 
-export function getContext (context, app) {
+export function getContext (context) {
   let ctx = {
     isServer: !!context.isServer,
     isClient: !!context.isClient,
-    isDev: true,
-    app: app,
-    
+    isDev: false,
+    store: context.store,
     route: (context.to ? context.to : context.route),
-    payload: context.payload,
     error: context.error,
     base: '/',
-    env: {},
-    hotReload: context.hotReload || false
+    env: {}
   }
   const next = context.next
   ctx.params = ctx.route.params || {}
   ctx.query = ctx.route.query || {}
   ctx.redirect = function (status, path, query) {
     if (!status) return
-    ctx._redirected = true // Used in middleware
+    ctx._redirected = true
     // if only 1 or 2 arguments: redirect('/') or redirect('/', { foo: 'bar' })
     if (typeof status === 'string' && (typeof path === 'undefined' || typeof path === 'object')) {
       query = path || {}
@@ -87,16 +69,19 @@ export function getContext (context, app) {
   }
   if (context.req) ctx.req = context.req
   if (context.res) ctx.res = context.res
+  // Inject external plugins in context
+  
+  
   return ctx
 }
 
-export function middlewareSeries (promises, context) {
+export function promiseSeries (promises, context) {
   if (!promises.length || context._redirected) {
     return Promise.resolve()
   }
   return promisify(promises[0], context)
   .then(() => {
-    return middlewareSeries(promises.slice(1), context)
+    return promiseSeries(promises.slice(1), context)
   })
 }
 

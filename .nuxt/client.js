@@ -2,16 +2,12 @@
 
 import Vue from 'vue'
 import middleware from './middleware'
-import { createApp, NuxtError } from './index'
-import { applyAsyncData, sanitizeComponent, getMatchedComponents, getMatchedComponentsInstances, flatMapComponents, getContext, middlewareSeries, promisify, getLocation, compile } from './utils'
+import { app, router, store, NuxtError } from './index'
+import { applyAsyncData, getMatchedComponents, getMatchedComponentsInstances, flatMapComponents, getContext, promiseSeries, promisify, getLocation, compile } from './utils'
 const noopData = () => { return {} }
 const noopFetch = () => {}
 let _lastPaths = []
 let _lastComponentsFiles = []
-
-let app
-let router
-
 
 function mapTransitions(Components, to, from) {
   return Components.map((Component) => {
@@ -28,16 +24,20 @@ function loadAsyncComponents (to, from, next) {
     if (typeof Component === 'function' && !Component.options) {
       return new Promise(function (resolve, reject) {
         const _resolve = (Component) => {
-          Component = sanitizeComponent(Component)
+          if (!Component.options) {
+            Component = Vue.extend(Component) // fix issue #6
+            Component._Ctor = Component
+          } else {
+           Component._Ctor = Component
+           Component.extendOptions = Component.options
+          }
           match.components[key] = Component
           resolve(Component)
         }
         Component().then(_resolve).catch(reject)
       })
     }
-    Component = sanitizeComponent(Component)
-    match.components[key] = Component
-    return match.components[key]
+    return Component
   })
   const fromPath = from.fullPath.split('#')[0]
   const toPath = to.fullPath.split('#')[0]
@@ -77,33 +77,31 @@ function callMiddleware (Components, context, layout) {
     return middleware[name]
   })
   if (unknownMiddleware) return
-  return middlewareSeries(midd, context)
+  return promiseSeries(midd, context)
 }
 
-async function render (to, from, next) {
+function render (to, from, next) {
   if (this._hashChanged) return next()
-  let layout
-  let nextCalled = false
   const _next = function (path) {
     this.$loading.finish && this.$loading.finish()
-    if (nextCalled) return
     nextCalled = true
     next(path)
   }
-  let context = getContext({ to, isClient: true, next: _next.bind(this), error: this.error.bind(this) }, app)
+  let context = getContext({ to, store, isClient: true, next: _next.bind(this), error: this.error.bind(this) })
   let Components = getMatchedComponents(to)
   this._context = context
   this._dateLastError = this.$options._nuxt.dateErr
   this._hadError = !!this.$options._nuxt.err
   if (!Components.length) {
     // Default layout
-    await callMiddleware.call(this, Components, context)
-    if (context._redirected) return
-    layout = await this.loadLayout(typeof NuxtError.layout === 'function' ? NuxtError.layout(context) : NuxtError.layout)
-    await callMiddleware.call(this, Components, context, layout)
-    if (context._redirected) return
-    this.error({ statusCode: 404, message: 'This page could not be found.' })
-    return next()
+    callMiddleware.call(this, Components, context)
+    .then(() => this.loadLayout(typeof NuxtError.layout === 'function' ? NuxtError.layout(context) : NuxtError.layout))
+    .then(callMiddleware.bind(this, Components, context))
+    .then(() => {
+      this.error({ statusCode: 404, message: 'This page could not be found.' })
+      return next()
+    })
+    return
   }
   // Update ._data and other properties if hot reloaded
   Components.forEach(function (Component) {
@@ -113,17 +111,18 @@ async function render (to, from, next) {
     }
   })
   this.setTransitions(mapTransitions(Components, to, from))
-  try {
-    // Set layout
-    await callMiddleware.call(this, Components, context)
-    if (context._redirected) return
-    layout = Components[0].options.layout
+  let nextCalled = false
+  // Set layout
+  callMiddleware.call(this, Components, context)
+  .then(() => {
+    let layout = Components[0].options.layout
     if (typeof layout === 'function') {
       layout = layout(context)
     }
-    layout = await this.loadLayout(layout)
-    await callMiddleware.call(this, Components, context, layout)
-    if (context._redirected) return
+    return this.loadLayout(layout)
+  })
+  .then(callMiddleware.bind(this, Components, context))
+  .then(() => {
     // Pass validation?
     let isValid = true
     Components.forEach((Component) => {
@@ -131,14 +130,14 @@ async function render (to, from, next) {
       if (typeof Component.options.validate !== 'function') return
       isValid = Component.options.validate({
         params: to.params || {},
-        query : to.query  || {}
+        query : to.query  || {}, store: context.store
       })
     })
     if (!isValid) {
       this.error({ statusCode: 404, message: 'This page could not be found.' })
       return next()
     }
-    await Promise.all(Components.map((Component, i) => {
+    return Promise.all(Components.map((Component, i) => {
       // Check if only children route changed
       Component._path = compile(to.matched[i].path)(to.params)
       if (!this._hadError && Component._path === _lastPaths[i] && (i + 1) !== Components.length) {
@@ -162,13 +161,16 @@ async function render (to, from, next) {
       }
       return Promise.all(promises)
     }))
+  })
+  .then(() => {
     _lastPaths = Components.map((Component, i) => compile(to.matched[i].path)(to.params))
     this.$loading.finish && this.$loading.finish()
     // If not redirected
     if (!nextCalled) {
       next()
     }
-  } catch (error) {
+  })
+  .catch((error) => {
     _lastPaths = []
     error.statusCode = error.statusCode || error.status || (error.response && error.response.status) || 500
     let layout = NuxtError.layout
@@ -180,7 +182,7 @@ async function render (to, from, next) {
       this.error(error)
       next(false)
     })
-  }
+  })
 }
 
 // Fix components format in matched, it's due to code-splitting of vue-router
@@ -270,7 +272,7 @@ function addHotReload ($component, depth) {
       this.$loading.finish && this.$loading.finish()
       router.push(path)
     }
-    let context = getContext({ route: router.currentRoute, isClient: true, hotReload: true, next: next.bind(this), error: this.error }, app)
+    let context = getContext({ route: router.currentRoute, store, isClient: true, next: next.bind(this), error: this.error })
     this.$loading.start && this.$loading.start()
     callMiddleware.call(this, Components, context)
     .then(() => {
@@ -321,27 +323,29 @@ if (!NUXT) {
   throw new Error('[nuxt.js] cannot find the global variable __NUXT__, make sure the server is working.')
 }
 // Get matched components
-const resolveComponents = function (router) {
-  const path = getLocation(router.options.base)
-  return flatMapComponents(router.match(path), (Component, _, match, key, index) => {
-    if (typeof Component === 'function' && !Component.options) {
-      return new Promise(function (resolve, reject) {
-        const _resolve = (Component) => {
-          Component = sanitizeComponent(Component)
-          if (NUXT.serverRendered) {
-            applyAsyncData(Component, NUXT.data[index])
-          }
-          match.components[key] = Component
-          resolve(Component)
+const path = getLocation(router.options.base)
+const resolveComponents = flatMapComponents(router.match(path), (Component, _, match, key, index) => {
+  if (typeof Component === 'function' && !Component.options) {
+    return new Promise(function (resolve, reject) {
+      const _resolve = (Component) => {
+        if (!Component.options) {
+          Component = Vue.extend(Component) // fix issue #6
+          Component._Ctor = Component
+        } else {
+          Component._Ctor = Component
+          Component.extendOptions = Component.options
         }
-        Component().then(_resolve).catch(reject)
-      })
-    }
-    Component = sanitizeComponent(Component)
-    match.components[key] = Component
-    return Component
-  })
-}
+        if (NUXT.serverRendered) {
+          applyAsyncData(Component, NUXT.data[index])
+        }
+        match.components[key] = Component
+        resolve(Component)
+      }
+      Component().then(_resolve).catch(reject)
+    })
+  }
+  return Component
+})
 
 function nuxtReady (app) {
   window._nuxtReadyCbs.forEach((cb) => {
@@ -349,26 +353,24 @@ function nuxtReady (app) {
       cb(app)
     }
   })
-  // Special JSDOM
-  if (typeof window._onNuxtLoaded === 'function') {
-    window._onNuxtLoaded(app)
-  }
   // Add router hooks
   router.afterEach(function (to, from) {
     app.$nuxt.$emit('routeChanged', to, from)
   })
 }
 
-createApp()
-.then(async (__app) => {
-  app = __app.app
-  router = __app.router
-  
-  const Components = await Promise.all(resolveComponents(router))
+Promise.all(resolveComponents)
+.then((Components) => {
   const _app = new Vue(app)
-  const layout = NUXT.layout || 'default'
-  await _app.loadLayout(layout)
-  _app.setLayout(layout)
+
+  let layout = NUXT.layout || 'default'
+  return _app.loadLayout(layout)
+  .then(() => {
+    _app.setLayout(layout)
+    return { _app, Components }
+  })
+})
+.then(({ _app, Components }) => {
   const mountApp = () => {
     _app.$mount('#__nuxt')
     Vue.nextTick(() => {

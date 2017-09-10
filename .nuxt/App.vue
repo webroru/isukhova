@@ -8,51 +8,14 @@
 <script>
 import NuxtLoading from './components/nuxt-loading.vue'
 
-import 'bootstrap/scss/bootstrap-grid.scss'
-
-import 'bootstrap/scss/utilities/_flex.scss'
-
-import '~/css/common.css'
-
-import '~/css/container.css'
-
-import '~/css/footer-container.css'
-
-import '~/css/footer-copyright.css'
-
-import '~/css/footer-menu.css'
-
-import '~/css/header-container.css'
-
-import '~/css/main-navigation.css'
-
-import '~/css/menu-toggle.css'
-
-import '~/css/search-form.css'
-
-import '~/css/site-branding.css'
-
-import '~/css/site-footer.css'
-
-import '~/css/site-header.css'
-
-import '~/css/site-info.css'
-
-import '~/css/site-logo.css'
-
-import '~/css/top-panel.css'
-
-import '~/css/totop.css'
-
-
 let layouts = {
 
-  "_default": () => import('/var/www/html/layouts/default.vue'  /* webpackChunkName: "layouts/default" */)
+  "_default": () => import('/home/webroru/PhpstormProjects/isukhova/layouts/default.vue'  /* webpackChunkName: "layouts/default" */)
 
 }
 
 export default {
-  head: {"titleTemplate":"%s - Nuxt.js","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"}],"link":[{"rel":"stylesheet","href":"https://fonts.googleapis.com/css?family=Comfortaa:400,700|Poiret+One|Roboto+Condensed:300,400,700&amp;subset=cyrillic"},{"rel":"stylesheet","href":"https://fonts.googleapis.com/icon?family=Material+Icons"}],"style":[],"script":[]},
+  head: {"title":"starter","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Nuxt.js project"}],"link":[{"rel":"icon","type":"image/x-icon","href":"/favicon.ico"},{"rel":"stylesheet","href":"https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"}]},
   data: () => ({
     layout: null,
     layoutName: ''
@@ -95,4 +58,7 @@ export default {
   }
 }
 </script>
+
+
+<style src="~assets/style/app.styl" lang="styl"></style>
 
