@@ -6,15 +6,15 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 
-const _d80adb58 = () => import('/var/www/html/pages/index.vue' /* webpackChunkName: "pages/index" */)
+const _128987b4 = () => import('/home/webroru/PhpstormProjects/isukhova/pages/index.vue' /* webpackChunkName: "pages/index" */)
 
-const _4568074b = () => import('/var/www/html/pages/price.vue' /* webpackChunkName: "pages/price" */)
+const _781206aa = () => import('/home/webroru/PhpstormProjects/isukhova/pages/price.vue' /* webpackChunkName: "pages/price" */)
 
-const _7442b78f = () => import('/var/www/html/pages/about.vue' /* webpackChunkName: "pages/about" */)
+const _1a5ca622 = () => import('/home/webroru/PhpstormProjects/isukhova/pages/about.vue' /* webpackChunkName: "pages/about" */)
 
-const _70efe422 = () => import('/var/www/html/pages/contact.vue' /* webpackChunkName: "pages/contact" */)
+const _6ef4cfe1 = () => import('/home/webroru/PhpstormProjects/isukhova/pages/contacts.vue' /* webpackChunkName: "pages/contacts" */)
 
-const _34c1826c = () => import('/var/www/html/pages/portfolio.vue' /* webpackChunkName: "pages/portfolio" */)
+const _2216f7ac = () => import('/home/webroru/PhpstormProjects/isukhova/pages/portfolio.vue' /* webpackChunkName: "pages/portfolio" */)
 
 
 
@@ -42,39 +42,36 @@ const scrollBehavior = (to, from, savedPosition) => {
 }
 
 
-export function createRouter () {
-  return new Router({
-    mode: 'history',
-    base: '/',
-    linkActiveClass: 'current_page_item',
-    linkExactActiveClass: 'nuxt-link-exact-active',
-    scrollBehavior,
-    routes: [
-  		{
+export default new Router({
+  mode: 'history',
+  base: '/',
+  linkActiveClass: 'nuxt-link-active',
+  scrollBehavior,
+  routes: [
+		{
 			path: "/",
-			component: _d80adb58,
+			component: _128987b4,
 			name: "index"
 		},
 		{
 			path: "/price",
-			component: _4568074b,
+			component: _781206aa,
 			name: "price"
 		},
 		{
 			path: "/about",
-			component: _7442b78f,
+			component: _1a5ca622,
 			name: "about"
 		},
 		{
-			path: "/contact",
-			component: _70efe422,
-			name: "contact"
+			path: "/contacts",
+			component: _6ef4cfe1,
+			name: "contacts"
 		},
 		{
 			path: "/portfolio",
-			component: _34c1826c,
+			component: _2216f7ac,
 			name: "portfolio"
 		}
-    ]
-  })
-}
+  ]
+})

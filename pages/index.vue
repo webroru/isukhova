@@ -40,7 +40,7 @@
                   <v-flex d-flex>
                     <v-layout row wrap>
                       <v-flex xs12 md4>
-                        <v-card hover height="400px">
+                        <v-card hover height="400px" class="purple white--text">
                           <v-card-title primary-title>
                             <div class="headline">Мой Instagram:</div>
                             <v-btn flat href="https://www.instagram.com/_irina.sukhova_/">@_irina.sukhova_</v-btn>
@@ -199,7 +199,7 @@
   export default {
     head () {
       return {
-        title: 'Фотограя Ирина Сухова',
+        title: 'Фотограф Ирина Сухова',
       }
     },
     data () {
