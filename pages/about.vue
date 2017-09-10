@@ -1,34 +1,31 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div id="primary" class="col-xs-12 col-md-8">
-                <main id="main" class="site-main" role="main">
-                    <article class="page type-page status-publish hentry no-thumb">
-                        <header class="entry-header">
-                            <h1 class="entry-title">Обо мне</h1>
-                        </header>
-
-                        <div class="entry-content">
-                            <p>Добрый день. Меня зовут Ирина Сухова. Я живу и работаю в солнечном г.Ростов-на-Дону.</p>
-                            <p>Основным направлением в моей работе являются детская и семейная фотосессия.</p>
-                            <p>Самое главное для меня в фотографии — это живые эмоции, чтобы получились те самые снимки, которые вы будете рассматривать с удовольствием спустя много лет.</p>
-                            <p>На моем сайте вы можете ознакомиться с моим <nuxt-link to="/portfolio">портфолио</nuxt-link>, изучить <nuxt-link to="/price">пакеты услуг</nuxt-link>, почитать <nuxt-link to="/tips">рекомендации для съемок</nuxt-link>.</p>
-                            <p>Если вам понравились мои работы, не стесняйтесь, пишите и я буду рада познакомиться и сохранить историю в фотографиях для вашей семьи!!!</p>
-                            <p>ps. Есть интересные предложения по съемке беременных девушек. Присылайте свои фотографии на почту и может именно вы поучаствуете в <nuxt-link to="/price">tfp</nuxt-link> съемке :)</p>
-                        </div>
-                    </article>
-                </main>
-            </div>
-        </div>
-    </div>
+  <v-container fluid class="grey lighten-4">
+    <v-layout>
+      <v-flex sm12>
+        <h2 class="text-sm-center">Обо мне</h2>
+      </v-flex>
+    </v-layout>
+    <v-layout>
+      <v-flex sm6>
+      </v-flex>
+      <v-flex sm6>
+        <p>Добрый день. Меня зовут Ирина Сухова. Я живу и работаю в солнечном г.Ростов-на-Дону.</p>
+        <p>Основным направлением в моей работе являются детская и семейная фотосессия.</p>
+        <p>Самое главное для меня в фотографии — это живые эмоции, чтобы получились те самые снимки, которые вы будете рассматривать с удовольствием спустя много лет.</p>
+        <p>На моем сайте вы можете ознакомиться с моим <nuxt-link to="/portfolio" class="indigo--text">портфолио</nuxt-link>, изучить <nuxt-link to="/price" class="indigo--text">пакеты услуг</nuxt-link>, почитать <nuxt-link to="/tips" class="indigo--text">рекомендации для съемок</nuxt-link>.</p>
+        <p>Если вам понравились мои работы, не стесняйтесь, пишите и я буду рада познакомиться и сохранить историю в фотографиях для вашей семьи!!!</p>
+        <p>ps. Есть интересные предложения по съемке беременных девушек. Присылайте свои фотографии на почту и может именно вы поучаствуете в <nuxt-link to="/price" class="indigo--text">tfp</nuxt-link> съемке :)</p>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
   export default {
-   head () {
-    return {
-     title: 'Обо мне',
+    head () {
+      return {
+        title: 'Обо мне',
+      }
     }
-   }
   }
 </script>
