@@ -3,5 +3,5 @@
 /node_modules/
 /temp
 /npm-debug.log
-#/dist/
-#/.nuxt/
+/dist/
+/.nuxt/
