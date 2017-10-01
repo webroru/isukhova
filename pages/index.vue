@@ -44,10 +44,16 @@
                   <v-flex d-flex>
                     <v-layout row wrap>
                       <v-flex xs12 md4>
-                        <v-card hover height="389px" class="red lighten-3 white--text">
+                        <v-card height="389px" class="red lighten-3 white--text">
                           <v-card-title primary-title>
-                            <div class="headline">Мой Instagram:</div>
-                            <v-btn flat href="https://www.instagram.com/_irina.sukhova_/">@_irina.sukhova_</v-btn>
+                            <div class="headline">Как записаться на съемку:</div>
+                            <ul>
+                              <li>Посмотрите мое <nuxt-link to="/portfolio" class="indigo--text">портфолио</nuxt-link></li>
+                              <li>Изучите <nuxt-link to="/price" class="indigo--text">прайс</nuxt-link></li>
+                              <li>Напишите мне и мы определимся с датой съемки</li>
+                              <li>Изучите условия съемки</li>
+                              <li>Можете почитать статьи на моем сайте, чтобы было легче подготовиться к фотосессии                              </li>
+                            </ul>
                           </v-card-title>
                         </v-card>
                       </v-flex>
@@ -84,23 +90,18 @@
                     </v-card>
                   </v-flex>
                   <v-flex d-flex hidden-md-and-up>
-                    <v-card hover>
-                      <v-card-media src="/gallery/imag0049.jpg" height="389px">
-                        <v-container fill-height fluid>
-                          <v-layout fill-height>
-                            <v-flex xs12 align-end flexbox>
-                              <span class="headline grey--text text--darken-3">Выездная фотосесссия в Праге</span>
-                            </v-flex>
-                          </v-layout>
-                        </v-container>
-                      </v-card-media>
+                    <v-card hover height="389px" class="brown lighten-3 white--text">
+                      <v-card-title primary-title>
+                        <div class="headline">Мой Instagram:</div>
+                        <v-btn flat href="https://www.instagram.com/_irina.sukhova_/">@_irina.sukhova_</v-btn>
+                      </v-card-title>
                     </v-card>
                   </v-flex>
                 </v-layout>
               </v-flex>
             </v-layout>
           </v-flex>
-          <v-flex d-flex>
+          <!-- <v-flex d-flex>
             <v-layout row wrap>
               <v-flex xs12 sm6 md3>
                 <v-layout row wrap>
@@ -194,7 +195,7 @@
                 </v-layout>
               </v-flex>
             </v-layout>
-          </v-flex>
+          </v-flex> -->
         </v-layout>
       </v-container>
     </div>
