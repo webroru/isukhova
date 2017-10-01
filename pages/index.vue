@@ -1,8 +1,8 @@
 <template>
     <div>
-      <v-carousel icon="stop" style="height: 720px">
+      <!-- <v-carousel icon="stop" style="height: 720px">
         <v-carousel-item v-for="(item,i) in items" v-bind:src="item.src" :key="i"></v-carousel-item>
-      </v-carousel>
+      </v-carousel> -->
 
       <v-container fluid grid-list-xl class="grey lighten-4">
         <v-layout row wrap>
@@ -26,16 +26,18 @@
                         </v-card>
                       </v-flex>
                       <v-flex xs12 md4>
-                        <v-card height="389px" class="blue-grey darken-2 white--text">
-                          <v-card-title primary-title>
-                            <div class="headline">Новогодняя фотосессия</div>
-                            <p>Совсем скоро наступит долгожданное для всех детей время года — зима. А где зима, там и Новый Год.</p>
-                            <p>Новогодняя съемка давно стала традицией во многих семьях. Она объединяет, дарит праздничное настроение и оставляет после себя память на всю жизнь в виде фотографий...</p>
-                          </v-card-title>
-                          <v-card-actions>
-                            <v-btn flat dark nuxt to="happy-new-year">Подробнее</v-btn>
-                          </v-card-actions>
-                        </v-card>
+                        <nuxt-link to="/happy-new-year" class="card-link">
+                          <v-card hover height="389px" class="blue-grey darken-2 white--text">
+                            <v-card-title primary-title>
+                              <div class="headline">Новогодняя фотосессия</div>
+                              <p>Совсем скоро наступит долгожданное для всех детей время года — зима. А где зима, там и Новый Год.</p>
+                              <p>Новогодняя съемка давно стала традицией во многих семьях. Она объединяет, дарит праздничное настроение и оставляет после себя память на всю жизнь в виде фотографий...</p>
+                            </v-card-title>
+                            <v-card-actions>
+                              <v-btn flat dark nuxt to="happy-new-year">Подробнее</v-btn>
+                            </v-card-actions>
+                          </v-card>
+                        </nuxt-link>
                       </v-flex>
                     </v-layout>
                   </v-flex>
@@ -197,6 +199,13 @@
       </v-container>
     </div>
 </template>
+
+<<style scoped>
+.card-link {
+  text-decoration: none;
+}
+</style>
+
 
 <script>
   export default {
