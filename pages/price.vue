@@ -1,265 +1,269 @@
 <template>
-  <v-container fluid class="grey lighten-4">
+  <v-container fluid grid-list-xl class="grey lighten-4">
     <v-layout row>
       <v-flex xs12 md8 offset-md2>
         <h3 id="studio" class="text-xs-center">Студия</h3>
-        <v-container grid-list-xl>
-          <v-layout row wrap>
-            <v-flex xs12 md4>
-              <v-card height="100%">
-                <v-card-media>
-                  <v-container fluid>
-                    <v-layout>
-                      <v-flex class="text-xs-center">
-                        <h5>Минимальный</h5>
-                        <v-avatar size="100px" class="red lighten-3">
-                          <span class="white--text headline">3000 ₽</span>
-                        </v-avatar>
-                      </v-flex>
-                    </v-layout>
-                  </v-container>
-                </v-card-media>
-                <v-divider></v-divider>
-                <template v-for="item in studio.minimal">
-                  <v-layout row class="ma-1">
-                    <v-flex xs2 class="text-xs-center">
-                      <v-avatar size="25px">
-                        <v-icon class="blue-grey--text text--darken-2">done</v-icon>
+        <v-layout row wrap>
+          <v-flex xs12 md4>
+            <v-card height="100%">
+              <v-card-media>
+                <v-container fluid>
+                  <v-layout>
+                    <v-flex class="text-xs-center">
+                      <h5>Минимальный</h5>
+                      <v-avatar size="100px" class="red lighten-3">
+                        <span class="white--text headline">3000 ₽</span>
                       </v-avatar>
                     </v-flex>
-                    <v-flex xs10>
-                      <div v-text="item"></div>
-                    </v-flex>
                   </v-layout>
-                </template>
-              </v-card>
-            </v-flex>
-            <v-flex xs12 md4>
-              <v-card height="100%">
-                <v-card-media>
-                  <v-container fluid>
-                    <v-layout>
-                      <v-flex class="text-xs-center">
-                        <h5>Оптимальный</h5>
-                        <v-avatar size="100px" class="red lighten-3">
-                          <span class="white--text headline">4000 ₽</span>
-                        </v-avatar>
-                      </v-flex>
-                    </v-layout>
-                  </v-container>
-                </v-card-media>
-                <v-divider></v-divider>
-                <template v-for="item in studio.optimal">
-                  <v-layout row class="ma-1">
-                    <v-flex xs2 class="text-xs-center">
-                      <v-avatar size="25px">
-                        <v-icon class="blue-grey--text text--darken-2">done</v-icon>
+                </v-container>
+              </v-card-media>
+              <v-divider></v-divider>
+              <template v-for="item in studio.minimal">
+                <v-layout row class="ma-1">
+                  <v-flex xs2 class="text-xs-center">
+                    <v-avatar size="25px">
+                      <v-icon class="blue-grey--text text--darken-2">done</v-icon>
+                    </v-avatar>
+                  </v-flex>
+                  <v-flex xs10>
+                    <div v-text="item"></div>
+                  </v-flex>
+                </v-layout>
+              </template>
+            </v-card>
+          </v-flex>
+          <v-flex xs12 md4>
+            <v-card height="100%">
+              <v-card-media>
+                <v-container fluid>
+                  <v-layout>
+                    <v-flex class="text-xs-center">
+                      <h5>Оптимальный</h5>
+                      <v-avatar size="100px" class="red lighten-3">
+                        <span class="white--text headline">4000 ₽</span>
                       </v-avatar>
                     </v-flex>
-                    <v-flex xs10>
-                      <div v-text="item"></div>
-                    </v-flex>
                   </v-layout>
-                </template>
-              </v-card>
-            </v-flex>
-            <v-flex xs12 md4>
-              <v-card height="100%">
-                <v-card-media>
-                  <v-container fluid>
-                    <v-layout>
-                      <v-flex class="text-xs-center">
-                        <h5>Максимальный</h5>
-                        <v-avatar size="100px" class="red lighten-3">
-                          <span class="white--text headline">7000 ₽</span>
-                        </v-avatar>
-                      </v-flex>
-                    </v-layout>
-                  </v-container>
-                </v-card-media>
-                <v-divider></v-divider>
-                <template v-for="item in studio.maximal">
-                  <v-layout row class="ma-1">
-                    <v-flex xs2 class="text-xs-center">
-                      <v-avatar size="25px">
-                        <v-icon class="blue-grey--text text--darken-2">done</v-icon>
+                </v-container>
+              </v-card-media>
+              <v-divider></v-divider>
+              <template v-for="item in studio.optimal">
+                <v-layout row class="ma-1">
+                  <v-flex xs2 class="text-xs-center">
+                    <v-avatar size="25px">
+                      <v-icon class="blue-grey--text text--darken-2">done</v-icon>
+                    </v-avatar>
+                  </v-flex>
+                  <v-flex xs10>
+                    <div v-text="item"></div>
+                  </v-flex>
+                </v-layout>
+              </template>
+            </v-card>
+          </v-flex>
+          <v-flex xs12 md4>
+            <v-card height="100%">
+              <v-card-media>
+                <v-container fluid>
+                  <v-layout>
+                    <v-flex class="text-xs-center">
+                      <h5>Максимальный</h5>
+                      <v-avatar size="100px" class="red lighten-3">
+                        <span class="white--text headline">7000 ₽</span>
                       </v-avatar>
                     </v-flex>
-                    <v-flex xs10>
-                      <div v-text="item"></div>
-                    </v-flex>
                   </v-layout>
-                </template>
-              </v-card>
-            </v-flex>
-          </v-layout>
-        </v-container>
+                </v-container>
+              </v-card-media>
+              <v-divider></v-divider>
+              <template v-for="item in studio.maximal">
+                <v-layout row class="ma-1">
+                  <v-flex xs2 class="text-xs-center">
+                    <v-avatar size="25px">
+                      <v-icon class="blue-grey--text text--darken-2">done</v-icon>
+                    </v-avatar>
+                  </v-flex>
+                  <v-flex xs10>
+                    <div v-text="item"></div>
+                  </v-flex>
+                </v-layout>
+              </template>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex xs12 md8 offset-md2>
         <h3 id="walk" class="text-xs-center">Фотопрогулка</h3>
-        <v-container grid-list-xl>
-          <v-layout row wrap>
-            <v-flex xs12 sm6 lg3>
-              <v-card height="100%">
-                <v-card-media>
-                  <v-container fluid>
-                    <v-layout>
-                      <v-flex class="text-xs-center">
-                        <h5>Минимальный</h5>
-                        <v-avatar size="100px" class="red lighten-3">
-                          <span class="white--text headline">3000 ₽</span>
-                        </v-avatar>
-                      </v-flex>
-                    </v-layout>
-                  </v-container>
-                </v-card-media>
-                <v-divider></v-divider>
-                <template v-for="item in walk.minimal">
-                  <v-layout row class="ma-1">
-                    <v-flex xs2 class="text-xs-center">
-                      <v-avatar size="25px">
-                        <v-icon class="blue-grey--text text--darken-2">done</v-icon>
+        <v-layout row wrap>
+          <v-flex xs12 sm6 lg3>
+            <v-card height="100%">
+              <v-card-media>
+                <v-container fluid>
+                  <v-layout>
+                    <v-flex class="text-xs-center">
+                      <h5>Минимальный</h5>
+                      <v-avatar size="100px" class="red lighten-3">
+                        <span class="white--text headline">3000 ₽</span>
                       </v-avatar>
                     </v-flex>
-                    <v-flex xs10>
-                      <div v-text="item"></div>
-                    </v-flex>
                   </v-layout>
-                </template>
-              </v-card>
-            </v-flex>
-            <v-flex xs12 sm6 lg3>
-              <v-card height="100%">
-                <v-card-media>
-                  <v-container fluid>
-                    <v-layout>
-                      <v-flex class="text-xs-center">
-                        <h5>Оптимальный</h5>
-                        <v-avatar size="100px" class="red lighten-3">
-                          <span class="white--text headline">4500 ₽</span>
-                        </v-avatar>
-                      </v-flex>
-                    </v-layout>
-                  </v-container>
-                </v-card-media>
-                <v-divider></v-divider>
-                <template v-for="item in walk.optimal">
-                  <v-layout row class="ma-1">
-                    <v-flex xs2 class="text-xs-center">
-                      <v-avatar size="25px">
-                        <v-icon class="blue-grey--text text--darken-2">done</v-icon>
+                </v-container>
+              </v-card-media>
+              <v-divider></v-divider>
+              <template v-for="item in walk.minimal">
+                <v-layout row class="ma-1">
+                  <v-flex xs2 class="text-xs-center">
+                    <v-avatar size="25px">
+                      <v-icon class="blue-grey--text text--darken-2">done</v-icon>
+                    </v-avatar>
+                  </v-flex>
+                  <v-flex xs10>
+                    <div v-text="item"></div>
+                  </v-flex>
+                </v-layout>
+              </template>
+            </v-card>
+          </v-flex>
+          <v-flex xs12 sm6 lg3>
+            <v-card height="100%">
+              <v-card-media>
+                <v-container fluid>
+                  <v-layout>
+                    <v-flex class="text-xs-center">
+                      <h5>Оптимальный</h5>
+                      <v-avatar size="100px" class="red lighten-3">
+                        <span class="white--text headline">4500 ₽</span>
                       </v-avatar>
                     </v-flex>
-                    <v-flex xs10>
-                      <div v-text="item"></div>
-                    </v-flex>
                   </v-layout>
-                </template>
-              </v-card>
-            </v-flex>
-            <v-flex xs12 sm6 lg3>
-              <v-card height="100%">
-                <v-card-media>
-                  <v-container fluid>
-                    <v-layout>
-                      <v-flex class="text-xs-center">
-                        <h5>Оптимальный+</h5>
-                        <v-avatar size="100px" class="red lighten-3">
-                          <span class="white--text headline">6000 ₽</span>
-                        </v-avatar>
-                      </v-flex>
-                    </v-layout>
-                  </v-container>
-                </v-card-media>
-                <v-divider></v-divider>
-                <template v-for="item in walk.optimalPlus">
-                  <v-layout row class="ma-1">
-                    <v-flex xs2 class="text-xs-center">
-                      <v-avatar size="25px">
-                        <v-icon class="blue-grey--text text--darken-2">done</v-icon>
+                </v-container>
+              </v-card-media>
+              <v-divider></v-divider>
+              <template v-for="item in walk.optimal">
+                <v-layout row class="ma-1">
+                  <v-flex xs2 class="text-xs-center">
+                    <v-avatar size="25px">
+                      <v-icon class="blue-grey--text text--darken-2">done</v-icon>
+                    </v-avatar>
+                  </v-flex>
+                  <v-flex xs10>
+                    <div v-text="item"></div>
+                  </v-flex>
+                </v-layout>
+              </template>
+            </v-card>
+          </v-flex>
+          <v-flex xs12 sm6 lg3>
+            <v-card height="100%">
+              <v-card-media>
+                <v-container fluid>
+                  <v-layout>
+                    <v-flex class="text-xs-center">
+                      <h5>Оптимальный+</h5>
+                      <v-avatar size="100px" class="red lighten-3">
+                        <span class="white--text headline">6000 ₽</span>
                       </v-avatar>
                     </v-flex>
-                    <v-flex xs10>
-                      <div v-text="item"></div>
-                    </v-flex>
                   </v-layout>
-                </template>
-              </v-card>
-            </v-flex>
-            <v-flex xs12 sm6 lg3>
-              <v-card height="100%">
-                <v-card-media>
-                  <v-container fluid>
-                    <v-layout>
-                      <v-flex class="text-xs-center">
-                        <h5>Максимальный</h5>
-                        <v-avatar size="100px" class="red lighten-3">
-                          <span class="white--text headline">6000 ₽</span>
-                        </v-avatar>
-                      </v-flex>
-                    </v-layout>
-                  </v-container>
-                </v-card-media>
-                <v-divider></v-divider>
-                <template v-for="item in walk.optimalPlus">
-                  <v-layout row class="ma-1">
-                    <v-flex xs2 class="text-xs-center">
-                      <v-avatar size="25px">
-                        <v-icon class="blue-grey--text text--darken-2">done</v-icon>
+                </v-container>
+              </v-card-media>
+              <v-divider></v-divider>
+              <template v-for="item in walk.optimalPlus">
+                <v-layout row class="ma-1">
+                  <v-flex xs2 class="text-xs-center">
+                    <v-avatar size="25px">
+                      <v-icon class="blue-grey--text text--darken-2">done</v-icon>
+                    </v-avatar>
+                  </v-flex>
+                  <v-flex xs10>
+                    <div v-text="item"></div>
+                  </v-flex>
+                </v-layout>
+              </template>
+            </v-card>
+          </v-flex>
+          <v-flex xs12 sm6 lg3>
+            <v-card height="100%">
+              <v-card-media>
+                <v-container fluid>
+                  <v-layout>
+                    <v-flex class="text-xs-center">
+                      <h5>Максимальный</h5>
+                      <v-avatar size="100px" class="red lighten-3">
+                        <span class="white--text headline">8000 ₽</span>
                       </v-avatar>
                     </v-flex>
-                    <v-flex xs10>
-                      <div v-text="item"></div>
-                    </v-flex>
                   </v-layout>
-                </template>
-              </v-card>
-            </v-flex>
-          </v-layout>
-        </v-container>
+                </v-container>
+              </v-card-media>
+              <v-divider></v-divider>
+              <template v-for="item in walk.maximal">
+                <v-layout row class="ma-1">
+                  <v-flex xs2 class="text-xs-center">
+                    <v-avatar size="25px">
+                      <v-icon class="blue-grey--text text--darken-2">done</v-icon>
+                    </v-avatar>
+                  </v-flex>
+                  <v-flex xs10>
+                    <div v-text="item"></div>
+                  </v-flex>
+                </v-layout>
+              </template>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex xs12 md8 offset-md2>
         <h3 class="text-xs-center">Дополнительно можно заказать</h3>
-        <v-container grid-list-xl>
-          <v-layout row wrap>
-            <v-flex>
-              <ul>
-                <li>дополнительная ретушь фото — 150₽/фото</li>
-                <li>срочная ретушь (в течении 2 недель) — 50% от стоимости пакета</li>
-                <li>фотокниги — цена будет зависеть от размера книги</li>
-              </ul>
-            </v-flex>
-          </v-layout>
-        </v-container>
+        <v-layout row wrap>
+          <v-flex>
+            <ul>
+              <li>дополнительная ретушь фото — 150₽/фото</li>
+              <li>срочная ретушь (в течении 2 недель) — 50% от стоимости пакета</li>
+              <li>фотокниги — цена будет зависеть от размера книги</li>
+            </ul>
+          </v-flex>
+        </v-layout>
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex xs12 md8 offset-md2>
         <h3 id="walk" class="text-xs-center">Репортаж</h3>
-        <v-container grid-list-xl>
-          <v-layout row wrap>
-            <v-flex xs12 sm6 offset-sm3>
-              <v-card height="100%">
-                <v-card-media>
-                  <v-container fluid>
-                    <v-layout>
-                      <v-flex class="text-xs-center">
-                        <v-avatar size="120px" class="red lighten-3">
-                          <span class="white--text headline">3000 ₽/час</span>
-                        </v-avatar>
-                      </v-flex>
-                    </v-layout>
-                  </v-container>
-                </v-card-media>
-                <v-divider></v-divider>
-                <template v-for="item in report.common">
-                  <v-layout row class="ma-1">
-                    <v-flex xs2 class="text-xs-center">
-                      <v-avatar size="25px">
-                        <v-icon class="blue-grey--text text--darken-2">done</v-icon>
+        <v-layout row wrap>
+          <v-flex xs12 sm6 offset-sm3>
+            <v-card height="100%">
+              <v-card-media>
+                <v-container fluid>
+                  <v-layout>
+                    <v-flex class="text-xs-center">
+                      <v-avatar size="120px" class="red lighten-3">
+                        <span class="white--text headline">3000 ₽/час</span>
                       </v-avatar>
                     </v-flex>
-                    <v-flex xs10>
-                      <div v-text="item"></div>
-                    </v-flex>
                   </v-layout>
-                </template>
-              </v-card>
-            </v-flex>
-          </v-layout>
-        </v-container>
+                </v-container>
+              </v-card-media>
+              <v-divider></v-divider>
+              <template v-for="item in report.common">
+                <v-layout row class="ma-1">
+                  <v-flex xs2 class="text-xs-center">
+                    <v-avatar size="25px">
+                      <v-icon class="blue-grey--text text--darken-2">done</v-icon>
+                    </v-avatar>
+                  </v-flex>
+                  <v-flex xs10>
+                    <div v-text="item"></div>
+                  </v-flex>
+                </v-layout>
+              </template>
+            </v-card>
+          </v-flex>
+        </v-layout>
       </v-flex>
     </v-layout>
   </v-container>

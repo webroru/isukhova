@@ -7,12 +7,12 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { hid: 'description', name: 'description', content: 'Семейный и детский фотограф' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Marck+Script|Neucha|Bad+Script|Comfortaa:400,700|Poiret+One|Roboto:300,400,500,700|Material+Icons&amp;subset=cyrillic' },
-    ]
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Neucha|Material+Icons&amp;subset=cyrillic' },
+    ],
   },
   /*
   ** Customize the progress-bar color
@@ -22,10 +22,10 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    vendor: ['vuetify']
+    vendor: ['vuetify'],
   },
   plugins: ['~plugins/vuetify.js'],
   css: [
     { src: '~assets/style/app.styl', lang: 'styl' }
-  ]
-}
+  ],
+};
