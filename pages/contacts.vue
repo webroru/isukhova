@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid grid-list-md class="grey lighten-4">
+  <v-container fluid grid-list-md>
     <v-layout row wrap>
       <v-flex sm12>
         <h2 class="text-md-center">Контактная информация</h2>

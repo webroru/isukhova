@@ -1,6 +1,6 @@
 <template>
-  <v-container fluid class="grey lighten-4">
-    <v-layout>
+  <v-container fluid>
+    <v-layout >
       <v-flex sm12>
         <h2 class="text-sm-center">Обо мне</h2>
       </v-flex>

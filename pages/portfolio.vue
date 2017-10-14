@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="grey lighten-4">
+  <v-container fluid>
     <v-layout>
       <v-flex sm12>
         <h2 class="text-sm-center">Извините, раздел наполняется</h2>

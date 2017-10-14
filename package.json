@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Nuxt.js + Vuetify.js project",
   "author": "Igor Nemykin <webroru@gmail.com>",
+  "license": "UNLICENSED",
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
@@ -10,9 +11,10 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "nuxt": "0.10.7",
+    "caniuse-lite": "^1.0.30000746",
+    "nuxt": "1.0.0-rc11",
     "vue-server-renderer": "latest",
-    "vuetify": "^0.15.0"
+    "vuetify": "^0.16.5"
   },
   "devDependencies": {
     "eslint": "^4.8.0",

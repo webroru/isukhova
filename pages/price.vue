@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid grid-list-xl class="grey lighten-4">
+  <v-container fluid grid-list-xl>
     <v-layout row>
       <v-flex xs12 md8 offset-md2>
         <h3 id="studio" class="text-xs-center">Студия</h3>
