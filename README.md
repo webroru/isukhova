@@ -18,7 +18,7 @@ $ npm start
 # generate static project
 $ npm run generate
 
-# Deploy tu surge
+# Deploy to surge
 $ surge dist isukhova.ru
 ```
 
