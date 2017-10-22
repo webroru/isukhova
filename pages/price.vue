@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid grid-list-xl  v-bind:class="{ 'px-0': $vuetify.breakpoint.xsOnly }">
+  <v-container fluid grid-list-xl v-bind:class="{ 'px-0': $vuetify.breakpoint.xsOnly }">
     <v-layout row>
       <v-flex xs12 md8 offset-md2>
         <v-layout row wrap>
@@ -9,8 +9,8 @@
                 <v-container fluid>
                   <v-layout>
                     <v-flex class="text-xs-center">
-                      <h5>{{ item.title }}</h5>
-                      <v-avatar size="100px" class="red lighten-3">
+                      <h4 v-bind:class="{ 'mb-0': $vuetify.breakpoint.xsOnly }">{{ item.title }}</h4>
+                      <v-avatar size="100px" class="red lighten-3 hidden-xs-only">
                         <span class="white--text headline">{{ item.price }}</span>
                       </v-avatar>
                     </v-flex>
@@ -28,6 +28,11 @@
                   <div>{{ feature }}</div>
                 </v-flex>
               </v-layout>
+              <v-layout row wrap class="hidden-sm-and-up">
+                <v-flex class="text-xs-center red lighten-3">
+                  <div class="ma-3">{{ item.price }}</div>
+                </v-flex>
+              </v-layout>
             </v-card>
           </v-flex>
         </v-layout>
@@ -38,9 +43,9 @@
       <v-flex xs12 md8 offset-md2>
         <h3 id="walk" class="text-xs-center">{{ extra.title }}</h3>
         <v-layout row wrap>
-          <v-flex xs12 sm6 offset-sm3>
+          <v-flex xs12 md6 offset-md3>
             <v-card height="100%">
-              <v-card-media>
+              <v-card-media class="hidden-xs-only">
                 <v-container fluid>
                   <v-layout>
                     <v-flex class="text-xs-center">
@@ -60,6 +65,11 @@
                 </v-flex>
                 <v-flex xs11 sm10>
                   <div>{{ feature }}</div>
+                </v-flex>
+              </v-layout>
+              <v-layout row wrap class="hidden-sm-and-up">
+                <v-flex class="text-xs-center red lighten-3">
+                  <div class="ma-3">{{ extra.price }}</div>
                 </v-flex>
               </v-layout>
             </v-card>
@@ -134,7 +144,7 @@
         ],
         extra: {
           title: 'Крещение',
-          price: '7000 ₽',
+          price: '4000 ₽',
           features: [
             '15 фотографий в авторской художественной обработке',
             '80-100 в базовой цветокоррекции',

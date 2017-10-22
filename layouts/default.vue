@@ -36,7 +36,7 @@
   }
 
   body {
-    font-family: 'Neucha', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
   }
 </style>
 
