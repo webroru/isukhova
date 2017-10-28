@@ -6,7 +6,8 @@
           <v-layout row wrap>
             <v-flex xs12 sm6 md4 v-for="item in items" :key="item.image">
               <v-card hover tile slot="activator" @click.native.stop="item.dialog = true">
-                <v-card-media :src="item.thumbs" class="white--text" height="400px">
+                <v-card-media :src="$vuetify.breakpoint.smAndUp ? item.thumbs : null" class="white--text" :height="$vuetify.breakpoint.smAndUp ? '400px': 'auto'">
+                  <img :src="item.thumbs" class="hidden-sm-and-up" style="align-self: center">
                 </v-card-media>
               </v-card>
               <v-dialog v-model="item.dialog" lazy fullscreen transition="dialog-bottom-transition" :overlay="false">

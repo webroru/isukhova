@@ -103,7 +103,7 @@
               </v-flex>
               <v-flex d-flex hidden-md-and-up>
                 <v-card hover to="/portfolio/christening">
-                  <v-card-media src="/gallery/christening/1.jpg" height="389px">
+                  <v-card-media src="/gallery/christening/8.jpg" height="389px">
                     <v-container fill-height fluid>
                       <v-layout fill-height>
                         <v-flex xs12 align-end flexbox>
