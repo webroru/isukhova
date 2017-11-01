@@ -1,39 +1,18 @@
 <template>
-  <v-container fluid>
-    <v-layout>
-      <v-flex sm10 offset-sm1>
-        <v-container grid-list-xl v-bind:class="{ 'pa-0': $vuetify.breakpoint.xsOnly }">
-          <v-layout row wrap>
-            <v-flex xs12 sm6 md4 v-for="item in items" :key="item.image">
-              <v-card hover tile slot="activator" @click.native.stop="item.dialog = true">
-                <v-card-media :src="$vuetify.breakpoint.smAndUp ? item.thumbs : null" class="white--text" :height="$vuetify.breakpoint.smAndUp ? '400px': 'auto'">
-                  <img :src="item.thumbs" class="hidden-sm-and-up" style="align-self: center">
-                </v-card-media>
-              </v-card>
-              <v-dialog v-model="item.dialog" lazy fullscreen transition="dialog-bottom-transition" :overlay="false">
-                <v-card hover @click.native="item.dialog = false">
-                  <v-toolbar style="flex: 0 0 auto;">
-                    <v-btn icon @click.native="item.dialog = false">
-                      <v-icon>close</v-icon>
-                    </v-btn>
-                  </v-toolbar>
-                  <v-card-media :src="item.image" contain height="calc(100vh - 64px)"></v-card-media>
-                </v-card>
-              </v-dialog>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <Portfolio :images="items"></Portfolio>
 </template>
 
 <script>
+  import Portfolio from '~/components/Portfolio.vue';
+
   export default {
     head () {
       return {
         title: 'Крещение',
       }
+    },
+    components: {
+      Portfolio,
     },
     data() {
       return {
