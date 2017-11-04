@@ -63,9 +63,13 @@
             path: '/price',
           },
           {
+            text: 'FAQ',
+            path: '/faq',
+          },
+          {
             text: 'Контакты',
             path: '/contacts',
-          }
+          },
         ],
         title: 'Vuetify.js'
       }
