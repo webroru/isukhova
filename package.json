@@ -11,6 +11,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/sitemap": "^0.0.3",
     "caniuse-lite": "^1.0.30000746",
     "nuxt": "1.0.0-rc11",
     "vue-server-renderer": "latest",

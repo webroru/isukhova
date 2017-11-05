@@ -1,7 +1,4 @@
 module.exports = {
-  /*
-  ** Headers of the page
-  */
   head: {
     title: 'starter',
     meta: [
@@ -14,15 +11,16 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto+Condensed|Material+Icons&amp;subset=cyrillic' },
     ],
   },
-  /*
-  ** Customize the progress-bar color
-  */
   loading: { color: '#3B8070' },
-  /*
-  ** Build configuration
-  */
   build: {
     vendor: ['vuetify'],
+  },
+  modules: [
+    '@nuxtjs/sitemap',
+  ],
+  sitemap: {
+    hostname: 'http://isukhova.ru',
+    generate: true,
   },
   plugins: [
     '~plugins/vuetify.js',
