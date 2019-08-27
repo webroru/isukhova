@@ -13,7 +13,10 @@ module.exports = {
   },
   loading: { color: '#3B8070' },
   build: {
-    vendor: ['vuetify'],
+    vendor: [
+      'vuetify',
+      'axios',
+    ],
   },
   modules: [
     '@nuxtjs/sitemap',
@@ -23,10 +26,11 @@ module.exports = {
     generate: true,
   },
   plugins: [
-    '~plugins/vuetify.js',
-    { src: '~plugins/ga.js', ssr: false },
+    '~/plugins/vuetify.js',
+    '~/plugins/firebase.js',
+    { src: '~/plugins/ga.js', ssr: false },
   ],
   css: [
-    { src: '~assets/style/app.styl', lang: 'styl' },
+    { src: '~/assets/style/app.styl', lang: 'styl' },
   ],
 };
