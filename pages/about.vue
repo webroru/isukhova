@@ -14,7 +14,7 @@
             </v-avatar>
           </v-flex>
           <v-flex xs12 md8>
-            <editable :text="description"/>
+            <editable :text.sync="description" id="about"/>
             <!-- {{ description }} -->
             <!-- <p>Добрый день. Меня зовут Ирина Сухова. Я живу и работаю в солнечном г.Ростов-на-Дону.</p>
             <p>Основным направлением в моей работе являются детская и семейная фотосъемка.</p>
@@ -30,6 +30,7 @@
 
 <script>
   import Editable from '~/components/Editable';
+  import { fireDb } from '~/plugins/firebase.js'
 
   export default {
     components: {
@@ -40,9 +41,17 @@
         title: 'Обо мне',
       };
     },
-    data() {
+    async asyncData({ app, params, error }) {
+      const ref = fireDb.collection('pages').doc('about');
+      let snap;
+      try {
+        snap = await ref.get();
+      } catch (e) {
+        // TODO: error handling
+        console.error(e);
+      }
       return {
-        description: 'asdasdasd',
+        description: snap.data().text,
       };
     },
   };

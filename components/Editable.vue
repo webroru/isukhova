@@ -1,13 +1,13 @@
 <template>
   <div v-if="!edit"
     :class="{ ediatble: isEditable }"
-    v-on:click="onEdit"
-  >{{ text }}
+    @click="onEdit"
+  >{{ content }}
   </div>
   <textarea
     v-else
-    v-model="text"
-    v-on:blur="save"
+    v-model="content"
+    @blur="save"
   />
 </template>
 
@@ -18,7 +18,7 @@ import { fireDb } from '~/plugins/firebase.js'
 export default {
   props: {
     text: String,
-    key: String,
+    id: String,
   },
   computed: {
     isEditable() {
@@ -29,6 +29,7 @@ export default {
     return {
       ediatble: false,
       edit: false,
+      content: this.text,
     };
   },
   methods: {
@@ -38,13 +39,10 @@ export default {
     onEdit() {
       this.edit = true;
     },
-    save() {
-      this.edit = false;
-    },
-    async writeToFirestore() {
-      const ref = fireDb.collection("test").doc("test");
+    async save() {
+      const ref = fireDb.collection('pages').doc(this.id);
       const document = {
-        text: "This is a test message.",
+        text: this.content,
       };
       try {
         await ref.set(document);
@@ -52,13 +50,17 @@ export default {
         // TODO: error handling
         console.error(e);
       }
-      this.writeSuccessful = true;
+      this.edit = false;
     },
   },
 };
 </script>
 
 <style lang="stylus" scoped>
+  textarea
+    width 100%
+    height 100px
+
   .ediatble:hover
     border 1px dashed
     cursor pointer
