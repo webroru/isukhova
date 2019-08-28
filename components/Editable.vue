@@ -2,8 +2,8 @@
   <div v-if="!edit"
     :class="{ ediatble: isEditable }"
     @click="onEdit"
-  >{{ content }}
-  </div>
+    v-html="content"
+  ></div>
   <textarea
     v-else
     v-model="content"
@@ -18,7 +18,8 @@ import { fireDb } from '~/plugins/firebase.js'
 export default {
   props: {
     text: String,
-    id: String,
+    page: String,
+    field: String,
   },
   computed: {
     isEditable() {
@@ -40,10 +41,9 @@ export default {
       this.edit = true;
     },
     async save() {
-      const ref = fireDb.collection('pages').doc(this.id);
-      const document = {
-        text: this.content,
-      };
+      const ref = fireDb.collection('pages').doc(this.page);
+      const document = {};
+      document[this.field] = this.content;
       try {
         await ref.set(document);
       } catch (e) {

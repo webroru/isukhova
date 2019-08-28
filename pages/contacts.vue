@@ -9,7 +9,7 @@
       <v-flex xs12 sm6 offset-sm3>
         <v-card>
           <v-card-title>
-            <div>Для того, чтобы заказать фотосессию, узнать о свободных датах или задать интересующие вопросы, свяжитесь со мной по контактам, указанным ниже:</div>
+            <editable :text="title" page="contacts" field="title"/>
           </v-card-title>
           <v-list two-line>
             <v-list-tile href="tel:+79198840474">
@@ -57,11 +57,30 @@
 </template>
 
 <script>
+  import Editable from '~/components/Editable';
+  import { fireDb } from '~/plugins/firebase.js';
+
   export default {
-    head () {
+    components: {
+      Editable,
+    },
+    head() {
       return {
         title: 'Контакты',
+      };
+    },
+    async asyncData({ app, params, error }) {
+      const ref = fireDb.collection('pages').doc('contacts');
+      let snap;
+      try {
+        snap = await ref.get();
+      } catch (e) {
+        // TODO: error handling
+        console.error(e);
       }
-    }
-  }
+      return {
+        title: snap.data().title,
+      };
+    },
+  };
 </script>
