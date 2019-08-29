@@ -26,8 +26,9 @@ module.exports = {
     generate: true,
   },
   plugins: [
-    '~/plugins/vuetify.js',
+    '~/plugins/fireauth.js',
     '~/plugins/firebase.js',
+    '~/plugins/vuetify.js',
     { src: '~/plugins/ga.js', ssr: false },
   ],
   css: [

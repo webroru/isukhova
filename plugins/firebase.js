@@ -1,4 +1,5 @@
 import firebase from 'firebase/app';
+import 'firebase/auth';
 import 'firebase/firestore';
 
 if (!firebase.apps.length) {
@@ -13,5 +14,7 @@ if (!firebase.apps.length) {
   firebase.initializeApp(config);
   firebase.firestore().settings({ timestampsInSnapshots: true });
 }
-const fireDb = firebase.firestore();
-export { fireDb };
+
+export const fireDb = firebase.firestore();
+export const GoogleProvider = new firebase.auth.GoogleAuthProvider();
+export const auth = firebase.auth();
