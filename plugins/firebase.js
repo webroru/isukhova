@@ -8,8 +8,9 @@ if (!firebase.apps.length) {
     authDomain: 'isukhova.firebaseapp.com',
     databaseURL: 'https://isukhova.firebaseio.com',
     projectId: 'isukhova',
-    storageBucket: '',
+    storageBucket: 'isukhova.appspot.com',
     messagingSenderId: '426547357607',
+    appId: '1:426547357607:web:0bd4f3f4e033ff58',
   };
   firebase.initializeApp(config);
   firebase.firestore().settings({ timestampsInSnapshots: true });

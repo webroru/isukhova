@@ -1,5 +1,7 @@
+/* eslint-disable no-param-reassign */
+
 import Vuex from 'vuex';
-import firebase, { auth, GoogleProvider } from '~/plugin/firebase.js';
+import firebase, { auth, GoogleProvider } from '~/plugins/firebase.js';
 
 const createStore = () => {
   return new Vuex.Store({
@@ -7,7 +9,7 @@ const createStore = () => {
       user: null,
     },
     getters: {
-      activeUser: (state, getters) => state.user,
+      activeUser: (state) => state.user,
     },
     mutations: {
       setUser(state, payload) {
