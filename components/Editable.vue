@@ -1,9 +1,10 @@
 <template>
   <div v-if="!edit"
-    :class="{ ediatble: isEditable }"
+    :class="{ ediatble: mySession }"
     @click="onEdit"
-    v-html="content"
-  ></div>
+  >
+    <proxy :html="content" />
+  </div>
   <textarea
     v-else
     v-model="content"
@@ -14,16 +15,20 @@
 <script>
 import axios from 'axios';
 import { fireDb } from '~/plugins/firebase.js'
+import Proxy from '~/components/Proxy';
 
 export default {
+  components: {
+    Proxy,
+  },
   props: {
     text: String,
     page: String,
     field: String,
   },
   computed: {
-    isEditable() {
-      return true;
+    mySession() {
+      return this.$store.getters.activeUser;
     },
   },
   data() {
@@ -38,6 +43,7 @@ export default {
       this.ediatble = true;
     },
     onEdit() {
+      if (!this.mySession) return;
       this.edit = true;
     },
     async save() {

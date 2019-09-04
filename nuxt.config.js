@@ -17,6 +17,9 @@ module.exports = {
       'vuetify',
       'axios',
     ],
+    extend(config) {
+      config.resolve.alias.vue$ = 'vue/dist/vue.esm.js';
+    },
   },
   modules: [
     '@nuxtjs/sitemap',
