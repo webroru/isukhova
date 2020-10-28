@@ -1,6 +1,6 @@
-.vscode
 .nuxt
+.vscode
 dist
-build
 node_modules
 npm-debug.log
+public
